@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r esm server.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/aTewan/docker-node-api/issues"
   },
-  "homepage": "https://github.com/aTewan/docker-node-api#readme"
+  "homepage": "https://github.com/aTewan/docker-node-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "nodemon": "^2.0.2"
+  }
 }
