@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services: 
     api: 
         image: node:alpine
@@ -6,30 +6,35 @@ services:
         restart: on-failure
         ports: 
             - "80:8080"
-        links: 
-            - db
         depends_on: 
-            - db
+            - mongo
         volumes: 
             - ./:/app/
         working_dir: /app
         env_file: .env
         environment: 
-            - MONGO_USERNAME=$MONGO_USERNAME
-            - MONGO_PASSWORD=$MONGO_PASSWORD
-            - MONGO_HOSTNAME=$MONGO_HOSTNAME
-            - MONGO_PORT=$MONGO_PORT
-        command: npm run dev
+            MONGO_HOSTNAME: $MONGO_HOSTNAME
+            MONGO_PORT: $MONGO_PORT
+            MONGO_USERNAME: $MONGO_USERNAME
+            MONGO_PASSWORD: $MONGO_PASSWORD
+        command: /bin/sh -c "npm install && npm run dev"
     
-    db:
-        image: mongo:4.0
-        container_name: db_mongo
+    mongo-express:
+        image: mongo-express
+        container_name: mongo-express
         restart: always
-        expose: 
-            - 27017
-        volumes: 
-            - dbdata:/data/db
+        ports:
+            - "8081:8081"
+        environment: 
+            ME_CONFIG_MONGODB_ADMINUSERNAME: $MONGO_USERNAME
+            ME_CONFIG_MONGODB_ADMINPASSWORD: $MONGO_PASSWORD
+        depends_on: 
+            - mongo
 
-
-volumes: 
-    dbdata:
+    mongo:
+        image: mongo
+        container_name: mongo
+        restart: always
+        environment: 
+            MONGO_INITDB_ROOT_USERNAME: $MONGO_USERNAME
+            MONGO_INITDB_ROOT_PASSWORD: $MONGO_PASSWORD
