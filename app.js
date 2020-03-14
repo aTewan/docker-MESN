@@ -9,10 +9,12 @@ class App {
 
     connectToMongo() {
         mongoose.Promise = global.Promise;
-        let mongoUri = `mongodb://${process.env.MONGO_HOSTNAME}:${process.env.MONGO_PORT}/`;
-
-        console.log(mongoUri)
-
+        let username = process.env.MONGO_USERNAME;
+        let password = process.env.MONGO_PASSWORD;
+        let host = process.env.MONGO_HOSTNAME;
+        let port = process.env.MONGO_PORT;
+        
+        let mongoUri = `mongodb://${username}:${password}@${host}:${port}/`;
         mongoose.connect(mongoUri);
 
         mongoose.connection.on('open', () => {
