@@ -1,10 +1,19 @@
-import express from 'express'
-import mongoose from 'mongoose'
+import express from 'express';
+import mongoose from 'mongoose';
+const formidable = require('express-formidable');
+
+import { Routes } from './routes/routes'
 
 class App {
     constructor() {
         this.app = express();
+        this.config(this.app);
         this.connectToMongo();
+        this.routing(this.app);
+    }
+
+    config(app) {
+        app.use(formidable());
     }
 
     connectToMongo() {
@@ -24,6 +33,11 @@ class App {
         mongoose.connection.on('error', () => {
             console.log("Erreur lors de la connexion à MongoDB !");
         })
+    }
+
+    routing(app) {
+        let routesList = new Routes();
+        routesList.routes(app);
     }
 }
 

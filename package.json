@@ -19,6 +19,7 @@
   "homepage": "https://github.com/aTewan/docker-node-api#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
     "mongoose": "^5.9.4"
   },
   "devDependencies": {
