@@ -24,3 +24,26 @@ export const getTodos = async(req, res) => {
         }
     })
 }
+
+export const checkTodo = async(req, res) => {
+    let todo = {statut: true};
+    await TodoSchema.findByIdAndUpdate({_id: req.params.id}, {$set: todo}, (err, todo) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(todo);
+        }
+    })
+}
+
+export const deleteTodo = async(req, res) => {
+    await TodoSchema.findById(req.params.id).remove(function(err,todo) {
+        if(err) {
+            res.send(err)
+        }
+        else {
+            res.json(todo)
+        }
+    });
+
+}
