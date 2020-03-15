@@ -1,5 +1,5 @@
-# Environnement de développement de Docker
-*écrit par Antoine POIRIER et Siloé RABADAN*
+# Environnement de développement Docker
+*écrit et mis en place par Antoine POIRIER et Siloé RABADAN*
 
 Le but de ce projet est de monter un environnement de développement Docker en utilisant des technologies que nous utilisons.
 Nous avons utilisé ces technologies :
@@ -14,3 +14,17 @@ Nous avons utilisé ces technologies :
 * [MongoExpress](https://github.com/mongo-express/mongo-express) : Interface graphique semblable à phpMyAdmin pour MongoDB
 * [NodeJS](https://nodejs.org/en/) Javascript runtime
 * [Svelte](https://svelte.dev/) Framework Javascript n'utilisant pas de DOM virtuel, écrit par Rich Harris
+
+# Comment démarrer mon environnement de développement ?
+1. Cloner le repository
+```sh
+$ git clone https://github.com/aTewan/docker-MESN.git
+```
+2. Aller dans le dossier docker-MESN
+```sh
+$ cd docker-MESN
+```
+3. Monter l'environnement Docker
+```sh
+$ docker-compose up
+```
