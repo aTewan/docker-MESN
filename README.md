@@ -22,9 +22,23 @@ $ git clone https://github.com/aTewan/docker-MESN.git
 ```
 2. Aller dans le dossier docker-MESN
 ```sh
-$ cd docker-MESN
+$ cd docker-MESN/
 ```
 3. Monter l'environnement Docker
 ```sh
 $ docker-compose up
+```
+
+# Une fois démarrer comment accéder aux différents conteneurs déployés ?
+* L'API développée en NodeJS et Express est disponible à l'adresse suivante :
+```sh
+http://localhost:80
+```
+* L'interface de MongoExpress est disponible à l'adresse suivante : 
+```sh
+http://localhost:8081
+```
+* L'application web todoapp en Svelte est disponible à l'adresse suivante : 
+```sh
+http://localhost:5000
 ```
