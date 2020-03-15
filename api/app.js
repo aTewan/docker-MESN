@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 const formidable = require('express-formidable');
+import cors from 'cors';
 
 import { Routes } from './routes/routes'
 
@@ -14,6 +15,7 @@ class App {
 
     config(app) {
         app.use(formidable());
+        app.use(cors());
     }
 
     connectToMongo() {
@@ -24,7 +26,7 @@ class App {
         let port = process.env.MONGO_PORT;
         
         let mongoUri = `mongodb://${username}:${password}@${host}:${port}/`;
-        mongoose.connect(mongoUri);
+        mongoose.connect(mongoUri, {useFindAndModify: true});
 
         mongoose.connection.on('open', () => {
             console.log("Connecté à MongoDB !");
